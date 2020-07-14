@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body{
+        background-color: rgb(235, 153, 153);
+      }
+      p {
+        text-align: center;
+        font-size: 45px;
+        font-family: cursive;
+      }
+      #tim {
+        color: brown;
+        font-weight: bold;
+      }
+      button {
+        height: 40px;
+        border: none;
+        background-color: rgb(240, 78, 78);
+        margin-left: 530px;
+        width: 300px;
+        border-radius: 45%;
+        margin-top: 70px;
+        font: bold 20px sans-serif;
+        color: whitesmoke;
+      }
+      button:hover {
+        background-color: rgb(212, 116, 116);
+      }
+      ::selection {
+        color: rgb(238, 238, 238);
+        background: rgb(240, 78, 78);
+      }
+    </style>
+  </head>
+  <body id="c">
+    <strong><p>A simple stopwatch application :)</p></strong>
+
+    <p id="tim"></p>
+
+    <button onclick="stopOrStart()" id="shh">Stop</button>
+    <button onclick="reset()">Reset</button>
+    <button onclick="lable()">Lable</button>
+
+    <script> 
+      var intr = setInterval(timer, 1000);
+      var c = 2; //that counter let the button stop time to work
+      var d = 0; //this the main counter that calculate the time in seconds
+      var second = 0;
+      var min = 0;
+      var hours = 0;
+      function stopOrStart() {
+        c++;
+      }
+      function reset() {
+        d = 0;
+        second = 0;
+        min = 0;
+        hours = 0;
+      }
+      function timer() {
+        if (min % 60 == 0 && c % 2 == 0 && min != 0) {
+          hours += 1;
+          min = 0;
+        }
+        if (d % 60 == 0 && c % 2 == 0 && d != 0) {
+          min += 1;
+          second = 0;
+        }
+        if (c % 2 == 0) {
+          d++;
+          second += 1;
+          document.getElementById("shh").innerHTML = "Stop";
+        } else {
+          document.getElementById("shh").innerHTML = "Go";
+        }
+        document.getElementById("tim").innerHTML =
+          hours + ":" + min + ":" + second;
+      }
+      function lable(){
+        s=document.createElement("p")
+        s.innerHTML=hours + ":" + min + ":" + second;
+        document.getElementById("c").appendChild(s)
+      }
+    </script>
+  </body>
+</html>
